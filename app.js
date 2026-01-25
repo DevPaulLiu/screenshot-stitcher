@@ -20,7 +20,8 @@ class ScreenshotStitcher {
         this.gapInput = document.getElementById('gapInput');
         this.scaleInput = document.getElementById('scaleInput');
         this.scaleValue = document.getElementById('scaleValue');
-        this.stitchBtn = document.getElementById('stitchBtn');
+        this.restitchBtn = document.getElementById('restitchBtn');
+        this.reverseBtn = document.getElementById('reverseBtn');
         this.backBtn = document.getElementById('backBtn');
         this.downloadBtn = document.getElementById('downloadBtn');
         this.resetBtn = document.getElementById('resetBtn');

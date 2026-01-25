@@ -1,7 +1,6 @@
 class ScreenshotStitcher {
     constructor() {
         this.images = [];
-        this.maxImages = 100;
         this.initElements();
         this.initEventListeners();
     }
@@ -64,17 +63,7 @@ class ScreenshotStitcher {
     }
 
     handleFiles(files) {
-        const remainingSlots = this.maxImages - this.images.length;
-        const filesToProcess = Math.min(files.length, remainingSlots);
-
-        if (files.length > remainingSlots) {
-            const selectedCount = files.length;
-            const willAddCount = filesToProcess;
-            const willSkipCount = selectedCount - willAddCount;
-            alert(`本次选择了${selectedCount}张图片\n\n最多支持${this.maxImages}张图片\n已上传${this.images.length}张\n还能添加${remainingSlots}张\n\n将添加${willAddCount}张，跳过${willSkipCount}张`);
-        }
-
-        const fileArray = Array.from(files).slice(0, filesToProcess);
+        const fileArray = Array.from(files);
         const loadPromises = fileArray.map(file => {
             if (!file.type.startsWith('image/')) {
                 alert(`文件"${file.name}"不是图片格式，已跳过`);

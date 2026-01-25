@@ -28,27 +28,6 @@
             </div>
         </div>
 
-        <div class="settings-section" id="settingsSection" style="display: none;">
-            <h2>拼接设置</h2>
-            <div class="settings-grid">
-                <div class="setting-item">
-                    <label>间距：</label>
-                    <input type="number" id="gapInput" value="10" min="0" max="50">
-                </div>
-                <div class="setting-item">
-                    <label>缩放比例：</label>
-                    <input type="range" id="scaleInput" value="1" min="0.1" max="2" step="0.1">
-                    <span id="scaleValue">1.0x</span>
-                </div>
-            </div>
-            <div class="info-text">
-                <p>已选择 <span id="imageCount">0</span> 张图片</p>
-                <p>自动计算布局：<span id="layoutInfo">4列 × 4行</span></p>
-            </div>
-            <button class="btn btn-primary" id="stitchBtn">开始拼接</button>
-            <button class="btn btn-secondary" id="backBtn">重新选择图片</button>
-        </div>
-
         <div class="result-section" id="resultSection" style="display: none;">
             <h2>拼接结果</h2>
             <div class="result-container">
@@ -56,9 +35,34 @@
             </div>
             <div class="result-actions">
                 <button class="btn btn-primary" id="downloadBtn">下载图片</button>
-                <button class="btn btn-secondary" id="resetBtn">重新开始</button>
+                <button class="btn btn-small" id="reverseBtn">倒序</button>
             </div>
             <p class="preview-hint">点击图片可全屏预览</p>
+        </div>
+
+        <div class="settings-section" id="settingsSection" style="display: none;">
+            <div class="settings-header" id="settingsHeader">
+                <h2>拼接设置</h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="settings-content" id="settingsContent">
+                <div class="settings-grid">
+                    <div class="setting-item">
+                        <label>间距：</label>
+                        <input type="number" id="gapInput" value="10" min="0" max="50" class="short-input">
+                    </div>
+                    <div class="setting-item">
+                        <label>缩放比例：</label>
+                        <input type="range" id="scaleInput" value="1" min="0.1" max="2" step="0.1">
+                        <span id="scaleValue">1.0x</span>
+                    </div>
+                </div>
+                <div class="info-text">
+                    <p>已选择 <span id="imageCount">0</span> 张图片</p>
+                    <p>自动计算布局：<span id="layoutInfo">4列 × 4行</span></p>
+                </div>
+                <button class="btn btn-primary" id="restitchBtn">重新拼接</button>
+            </div>
         </div>
 
         <div class="fullscreen-preview" id="fullscreenPreview" style="display: none;">

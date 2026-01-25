@@ -25,6 +25,8 @@ class ScreenshotStitcher {
         this.backBtn = document.getElementById('backBtn');
         this.downloadBtn = document.getElementById('downloadBtn');
         this.resetBtn = document.getElementById('resetBtn');
+        this.settingsHeader = document.getElementById('settingsHeader');
+        this.settingsContent = document.getElementById('settingsContent');
     }
 
     initEventListeners() {
@@ -48,10 +50,9 @@ class ScreenshotStitcher {
 
         this.restitchBtn.addEventListener('click', () => this.stitchImages());
         this.reverseBtn.addEventListener('click', () => this.reverseImages());
-        this.backBtn.addEventListener('click', () => this.backToUpload());
         this.downloadBtn.addEventListener('click', () => this.downloadImage());
-        this.resetBtn.addEventListener('click', () => this.reset());
         this.resultCanvas.addEventListener('click', () => this.openFullscreenPreview());
+        this.settingsHeader.addEventListener('click', () => this.toggleSettings());
         this.closePreview.addEventListener('click', () => this.closeFullscreenPreview());
         this.fullscreenPreview.addEventListener('click', (e) => {
             if (e.target === this.fullscreenPreview) {
@@ -143,9 +144,14 @@ class ScreenshotStitcher {
         
         this.uploadSection.style.display = 'none';
         this.settingsSection.style.display = 'block';
+        this.settingsSection.classList.add('collapsed');
         this.resultSection.style.display = 'block';
         
         this.stitchImages();
+    }
+
+    toggleSettings() {
+        this.settingsSection.classList.toggle('collapsed');
     }
 
     backToUpload() {

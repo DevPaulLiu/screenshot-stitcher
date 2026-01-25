@@ -68,7 +68,10 @@ class ScreenshotStitcher {
         const filesToProcess = Math.min(files.length, remainingSlots);
 
         if (files.length > remainingSlots) {
-            alert(`最多只能上传${this.maxImages}张图片，已选择${this.images.length}张，还能添加${remainingSlots}张`);
+            const selectedCount = files.length;
+            const willAddCount = filesToProcess;
+            const willSkipCount = selectedCount - willAddCount;
+            alert(`本次选择了${selectedCount}张图片\n\n最多支持${this.maxImages}张图片\n已上传${this.images.length}张\n还能添加${remainingSlots}张\n\n将添加${willAddCount}张，跳过${willSkipCount}张`);
         }
 
         const fileArray = Array.from(files).slice(0, filesToProcess);

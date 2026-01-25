@@ -246,26 +246,19 @@ header h1 {
     font-size: 14px;
 }
 
+.btn-reverse {
+    width: 48px;
+    padding: 8px 0;
+}
+
 .result-section {
     margin-bottom: 30px;
-}
-
-.result-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.result-header h2 {
-    color: #333;
-    margin: 0;
 }
 
 .result-section h2 {
     color: #333;
     font-size: 24px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .result-container {

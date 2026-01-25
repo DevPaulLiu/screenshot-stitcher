@@ -107,7 +107,7 @@ sudo systemctl restart nginx
 
 ```bash
 sudo mkdir -p /var/www/screenshot-stitcher
-sudo cp index.html style.css app.js manifest.json sw.js icon-192.png icon-512.png /var/www/screenshot-stitcher/
+sudo cp index.html style.css app.js manifest.json sw.js icon-256.png /var/www/screenshot-stitcher/
 sudo chown -R www-data:www-data /var/www/screenshot-stitcher  # Ubuntu/Debian
 # 或
 sudo chown -R nginx:nginx /var/www/screenshot-stitcher  # CentOS/RHEL
@@ -132,24 +132,114 @@ sudo certbot renew --dry-run
 
 ### 安卓手机
 
-1. 在Chrome或Edge浏览器中访问：`https://your-domain.com`
+1. 在Chrome或Edge浏览器中访问：`https://`your-domain.com`
 2. 点击浏览器菜单（三个点）
 3. 选择"添加到主屏幕"或"安装应用"
 4. 确认安装
 
 ### iOS手机
 
-1. 在Safari浏览器中访问：`https://your-domain.com`
+1. 在Safari浏览器中访问：`https://`your-domain.com`
 2. 点击分享按钮（方框向上箭头）
 3. 向下滚动，选择"添加到主屏幕"
 4. 点击"添加"
 
 ## 安全性说明
 
-- 所有图片处理都在浏览器本地完成
-- 不会上传到任何服务器
-- 不会收集任何用户数据
-- 完全离线可用（首次安装后）
+### 🔒 安全性特点
+
+#### 1. 完全本地处理
+- 所有图片处理在浏览器本地完成
+- 不上传任何图片到服务器
+- 不收集任何用户数据
+- 保护用户隐私
+
+#### 2. 纯前端应用
+- 无后端服务器
+- 无数据库
+- 无用户认证
+- 无数据传输
+
+#### 3. HTTPS加密
+- 使用SSL/TLS加密传输
+- 保护连接安全
+- 防止中间人攻击
+
+#### 4. PWA离线能力
+- 首次下载后可离线使用
+- 不需要网络连接
+- 完全本地运行
+
+### 🔐 安全保证
+
+- ✅ 零数据上传 - 图片不离开设备
+- ✅ 零数据收集 - 不收集任何用户信息
+- ✅ 零依赖 - 不依赖第三方服务
+- ✅ 开源透明 - 代码完全公开
+
+## 核心实现技术
+
+### 🛠️ 前端技术栈
+
+#### 1. 基础技术
+- **HTML5** - 页面结构
+- **CSS3** - 响应式设计
+- **JavaScript (ES6+)** - 核心逻辑
+
+#### 2. 图像处理技术
+- **Canvas 2D API** - 图像绘制和操作
+- **Blob API** - 二进制数据处理
+- **DataURL** - 图像数据编码
+- **File API** - 文件上传和下载
+
+#### 3. PWA技术
+- **Service Worker** - 离线缓存
+- **Web App Manifest** - 应用配置
+- **FileSaver.js** - 跨浏览器下载
+
+#### 4. 部署技术
+- **Nginx** - 静态文件服务
+- **HTTPS** - 安全传输
+- **反向代理** - 端口转发
+
+### 💡 技术优势
+
+#### 1. 性能优化
+- 客户端处理 - 减少服务器负载
+- 离线缓存 - 快速加载
+- 响应式设计 - 适配各种设备
+
+#### 2. 用户体验
+- 批量上传 - 最多100张图片
+- 实时预览 - 即时看到效果
+- 全屏预览 - 方便查看
+- PWA安装 - 像原生App
+
+#### 3. 兼容性
+- 跨浏览器支持 - Chrome、Edge、Safari
+- 移动端优化 - iOS、Android
+- 响应式布局 - 手机、平板、电脑
+
+### 📋 技术架构
+
+```
+用户浏览器
+    ↓
+上传图片（本地）
+    ↓
+Canvas处理（本地）
+    ↓
+生成拼接图（本地）
+    ↓
+下载图片（本地）
+```
+
+### 🎯 适用场景
+
+- 隐私敏感 - 不想上传图片到云端
+- 快速处理 - 不需要等待服务器响应
+- 离线使用 - 没有网络也能用
+- 批量处理 - 一次处理多张截图
 
 ## 技术栈
 
@@ -165,8 +255,7 @@ sudo certbot renew --dry-run
 - `app.js` - 核心功能代码
 - `manifest.json` - PWA配置文件
 - `sw.js` - Service Worker（离线缓存）
-- `icon-192.png` - 192x192图标
-- `icon-512.png` - 512x512图标
+- `icon-256.png` - 256x256图标
 - `deploy.sh` - 自动部署脚本
 
 ## 许可证

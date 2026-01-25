@@ -29,14 +29,16 @@
         </div>
 
         <div class="result-section" id="resultSection" style="display: none;">
-            <h2>拼接结果</h2>
+            <div class="result-header">
+                <h2>拼接结果</h2>
+                <button class="btn btn-small" id="reverseBtn">倒序</button>
+            </div>
             <div class="result-container">
                 <canvas id="resultCanvas"></canvas>
             </div>
             <div class="result-actions">
                 <button class="btn btn-primary" id="previewBtn">全屏预览</button>
                 <button class="btn btn-secondary" id="downloadBtn">下载图片</button>
-                <button class="btn btn-small" id="reverseBtn">倒序</button>
             </div>
         </div>
 
@@ -67,15 +69,7 @@
 
         <div class="fullscreen-preview" id="fullscreenPreview" style="display: none;">
             <button class="close-preview" id="closePreview">✕</button>
-            <div class="preview-controls">
-                <button class="preview-btn" id="zoomOutBtn">-</button>
-                <span class="zoom-level" id="zoomLevel">100%</span>
-                <button class="preview-btn" id="zoomInBtn">+</button>
-                <button class="preview-btn" id="resetZoomBtn">重置</button>
-            </div>
-            <div class="preview-container" id="previewContainer">
-                <img id="fullscreenImage" alt="全屏预览">
-            </div>
+            <img id="fullscreenImage" alt="全屏预览">
         </div>
     </div>
 

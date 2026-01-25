@@ -53,6 +53,7 @@ class ScreenshotStitcher {
         this.reverseBtn.addEventListener('click', () => this.reverseImages());
         this.downloadBtn.addEventListener('click', () => this.downloadImage());
         this.previewBtn.addEventListener('click', () => this.openFullscreenPreview());
+        this.backBtn.addEventListener('click', () => this.backToUpload());
         this.settingsHeader.addEventListener('click', () => this.toggleSettings());
         this.closePreview.addEventListener('click', () => this.closeFullscreenPreview());
         this.fullscreenPreview.addEventListener('click', (e) => {

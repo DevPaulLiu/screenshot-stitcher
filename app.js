@@ -25,7 +25,6 @@ class ScreenshotStitcher {
         this.backBtn = document.getElementById('backBtn');
         this.downloadBtn = document.getElementById('downloadBtn');
         this.resetBtn = document.getElementById('resetBtn');
-        this.previewBtn = document.getElementById('previewBtn');
         this.settingsHeader = document.getElementById('settingsHeader');
         this.settingsContent = document.getElementById('settingsContent');
     }
@@ -52,7 +51,7 @@ class ScreenshotStitcher {
         this.restitchBtn.addEventListener('click', () => this.stitchImages());
         this.reverseBtn.addEventListener('click', () => this.reverseImages());
         this.downloadBtn.addEventListener('click', () => this.downloadImage());
-        this.previewBtn.addEventListener('click', () => this.openFullscreenPreview());
+        this.resultCanvas.addEventListener('click', () => this.openFullscreenPreview());
         this.backBtn.addEventListener('click', () => this.backToUpload());
         this.settingsHeader.addEventListener('click', () => this.toggleSettings());
         this.closePreview.addEventListener('click', () => this.closeFullscreenPreview());

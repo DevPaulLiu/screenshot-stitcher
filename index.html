@@ -34,10 +34,10 @@
                 <canvas id="resultCanvas"></canvas>
             </div>
             <div class="result-actions">
-                <button class="btn btn-primary" id="downloadBtn">下载图片</button>
+                <button class="btn btn-primary" id="previewBtn">全屏预览</button>
+                <button class="btn btn-secondary" id="downloadBtn">下载图片</button>
                 <button class="btn btn-small" id="reverseBtn">倒序</button>
             </div>
-            <p class="preview-hint">点击图片可全屏预览</p>
         </div>
 
         <div class="settings-section" id="settingsSection" style="display: none;">
@@ -67,7 +67,15 @@
 
         <div class="fullscreen-preview" id="fullscreenPreview" style="display: none;">
             <button class="close-preview" id="closePreview">✕</button>
-            <img id="fullscreenImage" alt="全屏预览">
+            <div class="preview-controls">
+                <button class="preview-btn" id="zoomOutBtn">-</button>
+                <span class="zoom-level" id="zoomLevel">100%</span>
+                <button class="preview-btn" id="zoomInBtn">+</button>
+                <button class="preview-btn" id="resetZoomBtn">重置</button>
+            </div>
+            <div class="preview-container" id="previewContainer">
+                <img id="fullscreenImage" alt="全屏预览">
+            </div>
         </div>
     </div>
 

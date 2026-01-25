@@ -25,8 +25,15 @@ class ScreenshotStitcher {
         this.backBtn = document.getElementById('backBtn');
         this.downloadBtn = document.getElementById('downloadBtn');
         this.resetBtn = document.getElementById('resetBtn');
+        this.previewBtn = document.getElementById('previewBtn');
         this.settingsHeader = document.getElementById('settingsHeader');
         this.settingsContent = document.getElementById('settingsContent');
+        this.zoomInBtn = document.getElementById('zoomInBtn');
+        this.zoomOutBtn = document.getElementById('zoomOutBtn');
+        this.resetZoomBtn = document.getElementById('resetZoomBtn');
+        this.zoomLevel = document.getElementById('zoomLevel');
+        this.previewContainer = document.getElementById('previewContainer');
+        this.currentZoom = 1;
     }
 
     initEventListeners() {
@@ -51,7 +58,7 @@ class ScreenshotStitcher {
         this.restitchBtn.addEventListener('click', () => this.stitchImages());
         this.reverseBtn.addEventListener('click', () => this.reverseImages());
         this.downloadBtn.addEventListener('click', () => this.downloadImage());
-        this.resultCanvas.addEventListener('click', () => this.openFullscreenPreview());
+        this.previewBtn.addEventListener('click', () => this.openFullscreenPreview());
         this.settingsHeader.addEventListener('click', () => this.toggleSettings());
         this.closePreview.addEventListener('click', () => this.closeFullscreenPreview());
         this.fullscreenPreview.addEventListener('click', (e) => {
@@ -59,6 +66,10 @@ class ScreenshotStitcher {
                 this.closeFullscreenPreview();
             }
         });
+
+        this.zoomInBtn.addEventListener('click', () => this.zoomIn());
+        this.zoomOutBtn.addEventListener('click', () => this.zoomOut());
+        this.resetZoomBtn.addEventListener('click', () => this.resetZoom());
 
         this.scaleInput.addEventListener('input', (e) => {
             this.scaleValue.textContent = `${e.target.value}x`;
@@ -233,11 +244,33 @@ class ScreenshotStitcher {
         this.fullscreenImage.src = dataUrl;
         this.fullscreenPreview.style.display = 'flex';
         document.body.style.overflow = 'hidden';
+        this.resetZoom();
     }
 
     closeFullscreenPreview() {
         this.fullscreenPreview.style.display = 'none';
         document.body.style.overflow = '';
+        this.resetZoom();
+    }
+
+    zoomIn() {
+        this.currentZoom = Math.min(this.currentZoom + 0.25, 3);
+        this.updateZoom();
+    }
+
+    zoomOut() {
+        this.currentZoom = Math.max(this.currentZoom - 0.25, 0.5);
+        this.updateZoom();
+    }
+
+    resetZoom() {
+        this.currentZoom = 1;
+        this.updateZoom();
+    }
+
+    updateZoom() {
+        this.fullscreenImage.style.transform = `scale(${this.currentZoom})`;
+        this.zoomLevel.textContent = `${Math.round(this.currentZoom * 100)}%`;
     }
 
     downloadImage() {

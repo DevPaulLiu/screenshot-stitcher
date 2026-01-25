@@ -192,25 +192,28 @@ class ScreenshotStitcher {
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(0, 0, totalWidth, totalHeight);
 
-        let loadedCount = 0;
-        
-        this.images.forEach((image, index) => {
-            const col = index % columns;
-            const row = Math.floor(index / columns);
+        const loadPromises = this.images.map((image, index) => {
+            return new Promise((resolve) => {
+                const col = index % columns;
+                const row = Math.floor(index / columns);
 
-            const x = col * (cellWidth + gap);
-            const y = row * (cellHeight + gap);
+                const x = col * (cellWidth + gap);
+                const y = row * (cellHeight + gap);
 
-            const img = new Image();
-            img.onload = () => {
-                ctx.drawImage(img, x, y, cellWidth, cellHeight);
-                loadedCount++;
-                
-                if (loadedCount === this.images.length) {
-                    this.showResult();
-                }
-            };
-            img.src = image.src;
+                const img = new Image();
+                img.onload = () => {
+                    resolve({ img, x, y, index });
+                };
+                img.src = image.src;
+            });
+        });
+
+        Promise.all(loadPromises).then(results => {
+            results.sort((a, b) => a.index - b.index);
+            results.forEach(result => {
+                ctx.drawImage(result.img, result.x, result.y, cellWidth, cellHeight);
+            });
+            this.showResult();
         });
     }
 

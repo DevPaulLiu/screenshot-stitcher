@@ -55,7 +55,7 @@
                         <input type="number" id="gapInput" value="10" min="0" max="50" class="short-input">
                     </div>
                     <div class="setting-item">
-                        <label>缩放比例：</label>
+                        <label>清晰度：</label>
                         <input type="range" id="scaleInput" value="1" min="0.1" max="2" step="0.1">
                         <span id="scaleValue">1.0x</span>
                     </div>
@@ -63,6 +63,7 @@
                 <div class="info-text">
                     <p>已选择 <span id="imageCount">0</span> 张图片</p>
                     <p>自动计算布局：<span id="layoutInfo">4列 × 4行</span></p>
+                    <p class="scale-hint">提示：提高清晰度会增加输出图片的尺寸</p>
                 </div>
                 <button class="btn btn-primary" id="restitchBtn">重新拼接</button>
             </div>

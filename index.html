@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>截图拼接工具 - Screenshot Grid Stitcher</title>
+    <meta name="theme-color" content="#667eea">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="icon-256.png">
+    <link rel="apple-touch-icon" href="icon-256.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>截图拼接工具</h1>
+            <p class="subtitle">将多张截图拼接成Grid形式的大图</p>
+        </header>
+
+        <div class="upload-section" id="uploadSection">
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">📁</div>
+                <p class="upload-text">点击或拖拽图片到这里</p>
+                <p class="upload-hint">支持批量上传，最多100张</p>
+                <p class="upload-hint mobile-hint">提示：如需使用特定相册应用，请在系统设置中更改默认应用</p>
+                <input type="file" id="fileInput" multiple accept="image/*" style="display: none;">
+            </div>
+        </div>
+
+        <div class="settings-section" id="settingsSection" style="display: none;">
+            <h2>拼接设置</h2>
+            <div class="settings-grid">
+                <div class="setting-item">
+                    <label>间距：</label>
+                    <input type="number" id="gapInput" value="10" min="0" max="50">
+                </div>
+                <div class="setting-item">
+                    <label>缩放比例：</label>
+                    <input type="range" id="scaleInput" value="1" min="0.1" max="2" step="0.1">
+                    <span id="scaleValue">1.0x</span>
+                </div>
+            </div>
+            <div class="info-text">
+                <p>已选择 <span id="imageCount">0</span> 张图片</p>
+                <p>自动计算布局：<span id="layoutInfo">4列 × 4行</span></p>
+            </div>
+            <button class="btn btn-primary" id="stitchBtn">开始拼接</button>
+            <button class="btn btn-secondary" id="backBtn">重新选择图片</button>
+        </div>
+
+        <div class="result-section" id="resultSection" style="display: none;">
+            <h2>拼接结果</h2>
+            <div class="result-container">
+                <canvas id="resultCanvas"></canvas>
+            </div>
+            <div class="result-actions">
+                <button class="btn btn-primary" id="downloadBtn">下载图片</button>
+                <button class="btn btn-secondary" id="resetBtn">重新开始</button>
+            </div>
+            <p class="preview-hint">点击图片可全屏预览</p>
+        </div>
+
+        <div class="fullscreen-preview" id="fullscreenPreview" style="display: none;">
+            <button class="close-preview" id="closePreview">✕</button>
+            <img id="fullscreenImage" alt="全屏预览">
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

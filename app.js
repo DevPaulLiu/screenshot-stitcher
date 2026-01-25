@@ -71,34 +71,35 @@ class ScreenshotStitcher {
             alert(`最多只能上传${this.maxImages}张图片，已选择${this.images.length}张，还能添加${remainingSlots}张`);
         }
 
-        let processedCount = 0;
-        
-        Array.from(files).slice(0, filesToProcess).forEach(file => {
+        const fileArray = Array.from(files).slice(0, filesToProcess);
+        const loadPromises = fileArray.map(file => {
             if (!file.type.startsWith('image/')) {
                 alert(`文件"${file.name}"不是图片格式，已跳过`);
-                processedCount++;
-                return;
+                return Promise.resolve(null);
             }
 
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const img = new Image();
-                img.onload = () => {
-                    this.images.push({
-                        src: e.target.result,
-                        name: file.name,
-                        width: img.width,
-                        height: img.height
-                    });
-                    processedCount++;
-                    
-                    if (processedCount === filesToProcess) {
-                        this.showSettings();
-                    }
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        resolve({
+                            src: e.target.result,
+                            name: file.name,
+                            width: img.width,
+                            height: img.height
+                        });
+                    };
+                    img.src = e.target.result;
                 };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
+                reader.readAsDataURL(file);
+            });
+        });
+
+        Promise.all(loadPromises).then(loadedImages => {
+            const validImages = loadedImages.filter(img => img !== null);
+            this.images.push(...validImages);
+            this.showSettings();
         });
     }
 

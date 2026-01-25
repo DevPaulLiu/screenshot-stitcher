@@ -45,7 +45,8 @@ class ScreenshotStitcher {
             this.handleFiles(e.dataTransfer.files);
         });
 
-        this.stitchBtn.addEventListener('click', () => this.stitchImages());
+        this.restitchBtn.addEventListener('click', () => this.stitchImages());
+        this.reverseBtn.addEventListener('click', () => this.reverseImages());
         this.backBtn.addEventListener('click', () => this.backToUpload());
         this.downloadBtn.addEventListener('click', () => this.downloadImage());
         this.resetBtn.addEventListener('click', () => this.reset());
@@ -141,7 +142,7 @@ class ScreenshotStitcher {
         
         this.uploadSection.style.display = 'none';
         this.settingsSection.style.display = 'block';
-        this.resultSection.style.display = 'none';
+        this.resultSection.style.display = 'block';
         
         this.stitchImages();
     }
@@ -152,6 +153,11 @@ class ScreenshotStitcher {
         this.uploadSection.style.display = 'block';
         this.settingsSection.style.display = 'none';
         this.resultSection.style.display = 'none';
+    }
+
+    reverseImages() {
+        this.images.reverse();
+        this.stitchImages();
     }
 
     stitchImages() {
@@ -211,7 +217,6 @@ class ScreenshotStitcher {
     }
 
     showResult() {
-        this.settingsSection.style.display = 'none';
         this.resultSection.style.display = 'block';
         this.resultSection.scrollIntoView({ behavior: 'smooth' });
     }

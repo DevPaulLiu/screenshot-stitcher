@@ -168,6 +168,21 @@ header h1 {
     font-weight: bold;
 }
 
+.settings-actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.settings-actions .btn {
+    flex: 1;
+}
+
+.back-btn {
+    width: 100%;
+    margin-top: 10px;
+}
+
 .btn {
     padding: 12px 24px;
     border: none;

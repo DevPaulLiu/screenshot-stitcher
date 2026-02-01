@@ -244,8 +244,10 @@ class ScreenshotStitcher {
     downloadImage() {
         this.resultCanvas.toBlob((blob) => {
             const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            const isHarmonyOS = /HarmonyOS|HuaweiBrowser|HMSCore/.test(navigator.userAgent);
+            const isMobile = isIOS || isHarmonyOS || /Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
             
-            if (isIOS && navigator.share && navigator.canShare) {
+            if (isMobile && navigator.share && navigator.canShare) {
                 const file = new File([blob], `screenshot-grid-${Date.now()}.png`, { type: 'image/png' });
                 
                 if (navigator.canShare({ files: [file] })) {
